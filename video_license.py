@@ -7,7 +7,7 @@ import numpy as np
 from PyQt5 import QtGui, QtWidgets
 from PyQt5.QtCore import QThread, pyqtSignal, Qt
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 import Preprocess
 import math
 import layout_video
@@ -41,14 +41,15 @@ npaClassifications = npaClassifications.reshape((npaClassifications.size, 1))
 kNearest = cv2.ml.KNearest_create()
 kNearest.train(npaFlattenedImages, cv2.ml.ROW_SAMPLE, npaClassifications)
 
-cap = cv2.VideoCapture('test.MOV')
+cap = None
 
 class MainWindow(QtWidgets.QFrame, layout_video.Ui_Frame):
     def __init__(self,*args, **kwargs):
         super(MainWindow,self).__init__(*args, **kwargs)
         self.setupUi(self)
-        self.btn_chonVideo.clicked.connect(self.start_capture_video)
-        self.btn_nhandang.clicked.connect(self.stop_capture_video)
+        self.btn_ChonVideo.clicked.connect(self.select_video)
+        self.btn_tieptuc.clicked.connect(self.start_capture_video)
+        self.btn_dung.clicked.connect(self.stop_capture_video)
         self.thread = {}
 
     def closeEvent(self, event):
@@ -63,6 +64,11 @@ class MainWindow(QtWidgets.QFrame, layout_video.Ui_Frame):
             dt = datetime.datetime.now()
             self.let_ngay.setText('%s-%s-%s' % (dt.day, dt.month, dt.year))
             self.let_gio.setText('%s:%s:%s' % (dt.hour, dt.minute, dt.second))
+    def select_video(self):
+        self.cap_path = QFileDialog.getOpenFileName(filter="(*.*)")[0]
+        global cap
+        cap = cv2.VideoCapture(self.cap_path)
+
 
     def start_capture_video(self):
         self.thread[1] = capture_video(index=1)
@@ -108,12 +114,12 @@ class MainWindow(QtWidgets.QFrame, layout_video.Ui_Frame):
                 self.let_tinh.setText(code)
 
     def show_wedcam(self, img):
-        """Updates the image_label with a new opencv image"""
+        #Cập nhật image_label bằng hình ảnh opencv mới
         qt_img = self.convert_cv_qt(img)
         self.original_video.setPixmap(qt_img)
 
     def convert_cv_qt(self, img):
-        """Convert from an opencv image to QPixmap"""
+        #Chuyển đổi từ hình ảnh opencv sang QPixmap
         rgb_image = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         h, w, ch = rgb_image.shape
         bytes_per_line = ch * w

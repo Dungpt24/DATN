@@ -14,6 +14,7 @@ import Preprocess
 import math
 
 img_path = None
+previosfilename = ""
 Ivehicle = None
 
 ADAPTIVE_THRESH_BLOCK_SIZE = 19
@@ -51,14 +52,25 @@ class MainWindow(QtWidgets.QFrame, layout_image.Ui_Frame):
             self.let_ngay.setText('%s-%s-%s' % (dt.day, dt.month, dt.year))
             self.let_gio.setText('%s:%s:%s' % (dt.hour, dt.minute, dt.second))
     def loadImage(self):
-        self.img_path = QFileDialog.getOpenFileName(filter="Image (*.*)")[0]
-        self.Ivehicle = cv2.imread(self.img_path)
+        self.img_path = QFileDialog.getOpenFileName(filter="Image (*.jp*)")[0]
+        if self.img_path!="":
+            self.previosfilename = self.img_path
+            self.Ivehicle = cv2.imread(self.img_path)
 
-        # nguyen goc
-        self.cv2_path = cv2.imread(self.img_path)
+            # nguyen goc
+            self.cv2_path = cv2.imread(self.img_path)
 
-        self.img_goc = cv2.imread(self.img_path)
-        self.setPhoto()
+            self.img_goc = cv2.imread(self.img_path)
+            self.setPhoto()
+        else:
+            self.Ivehicle = cv2.imread(self.previosfilename)
+
+            # nguyen goc
+            self.cv2_path = cv2.imread(self.previosfilename)
+
+            self.img_goc = cv2.imread(self.previosfilename)
+            self.setPhoto()
+
 
     def setPhoto(self):
         self.Ivehicle = imutils.resize(self.Ivehicle,width=300,height=340)
@@ -69,23 +81,24 @@ class MainWindow(QtWidgets.QFrame, layout_image.Ui_Frame):
 
     def imgae_license(self, img_path):
 
-        # Tiền xử lý ảnh
+        # Tiền xử lý ảnh gọi Process để xử lý thành ảnh xám và ảnh nhị phân
         global first_line, second_line
         imgGrayscaleplate, imgThreshplate = Preprocess.preprocess(self.cv2_path)
-        canny_image = cv2.Canny(imgThreshplate, 250, 255)  # Tách biên bằng canny
-        kernel = np.ones((3, 3), np.uint8)
-        dilated_image = cv2.dilate(canny_image, kernel, iterations=1)  # tăng sharp cho egde (Phép nở)
+        canny_image = cv2.Canny(imgThreshplate, 250, 255)  # Tách biên ảnh nhị phân bằng canny
+        kernel = np.ones((3, 3), np.uint8) #tạo ma trận kernel 3x3 biến đổi hình thái học
+        dilated_image = cv2.dilate(canny_image, kernel, iterations=1)  # tăng sharp cho egde (Phép nở) để tăng độ sắc nét
         # vẽ contour và lọc biển số
         contours, hierarchy = cv2.findContours(dilated_image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        # được danh sách các đưuòng viền coutour và thông tin phân cấp các đường viền
         contours = sorted(contours, key=cv2.contourArea, reverse=True)[:10]
-
+        #Lọc ra cái đường viền quan trọng
         screenCnt = []
         for c in contours:
             peri = cv2.arcLength(c, True)  # Tính chu vi
             approx = cv2.approxPolyDP(c, 0.06 * peri, True)  # làm xấp xỉ đa giác, chỉ giữ contour có 4 cạnh
-            [x, y, w, h] = cv2.boundingRect(approx.copy())
+            [x, y, w, h] = cv2.boundingRect(approx.copy())# Tính tọa độ kích thước của hình chữ nhật
             ratio = w / h
-            if (len(approx) == 4):
+            if (len(approx) == 4): # Kiểm tra biển số xe cso 4 cạnh không rồi thêm vào danh sách screenCnt
                 screenCnt.append(approx)
                 cv2.putText(self.cv2_path, str(len(approx.copy())), (x, y), cv2.FONT_HERSHEY_DUPLEX, 2, (0, 255, 0), 3)
 
@@ -111,29 +124,30 @@ class MainWindow(QtWidgets.QFrame, layout_image.Ui_Frame):
                 (x2, y2) = array[1]
                 doi = abs(y1 - y2)
                 ke = abs(x1 - x2)
-                angle = math.atan(doi / ke) * (180.0 / math.pi)
+                angle = math.atan(doi / ke) * (180.0 / math.pi) #Tính góc xoay bằng radian
 
                 # Cắt biển số ra khỏi ảnh và xoay ảnh
 
                 mask = np.zeros(imgGrayscaleplate.shape, np.uint8)
                 new_image = cv2.drawContours(mask, [i], 0, 255, -1, )
-                # Now crop
+                # Bắt đầu cắt
                 (x, y) = np.where(mask == 255)
                 (topx, topy) = (np.min(x), np.min(y))
                 (bottomx, bottomy) = (np.max(x), np.max(y))
 
-                roi = self.cv2_path[topx:bottomx, topy:bottomy]
-                imgThresh = imgThreshplate[topx:bottomx, topy:bottomy]
-                ptPlateCenter = (bottomx - topx) / 2, (bottomy - topy) / 2
-                if x1 < x2:
+                roi = self.cv2_path[topx:bottomx, topy:bottomy] # Cắt ảnh gốc theo giới hạn trên dưới
+                imgThresh = imgThreshplate[topx:bottomx, topy:bottomy] # Cắt phần tương ứng với ảnh gôc trên ảnh nhị phân
+                ptPlateCenter = (bottomx - topx) / 2, (bottomy - topy) / 2 #Tính tọa độ trung tâm của biển số xe
+                if x1 < x2: # x1<x2 thì điểm thứ nhất nằm bên trái điểm thứ 2
                     print('x1<x2')
                     rotationMatrix = cv2.getRotationMatrix2D(ptPlateCenter, -angle, 1.0)
-                else:
+                else:# x1>x2 thì điểm thứ nhất nằm bên phải điểm thứ 2
                     print('x1>x2')
                     rotationMatrix = cv2.getRotationMatrix2D(ptPlateCenter, angle, 1.0)
 
-                roi = cv2.warpAffine(roi, rotationMatrix, (bottomy - topy, bottomx - topx))
-                imgThresh = cv2.warpAffine(imgThresh, rotationMatrix, (bottomy - topy, bottomx - topx))
+                roi = cv2.warpAffine(roi, rotationMatrix, (bottomy - topy, bottomx - topx)) # Ta được ảnh gốc đã được cắt và xoay
+                imgThresh = cv2.warpAffine(imgThresh, rotationMatrix, (bottomy - topy, bottomx - topx))# Ảnh nhị phân tương ứng với ảnh gốc đã được cắt và xoay
+                #Thay đổi kích thước
                 roi = cv2.resize(roi, (0, 0), fx=3, fy=3)
                 imgThresh = cv2.resize(imgThresh, (0, 0), fx=3, fy=3)
 
@@ -165,20 +179,20 @@ class MainWindow(QtWidgets.QFrame, layout_image.Ui_Frame):
                 second_line = ""
 
                 for i in char_x:
-                    (x, y, w, h) = cv2.boundingRect(cont[char_x_ind[i]])
+                    (x, y, w, h) = cv2.boundingRect(cont[char_x_ind[i]]) #lấy hình chữ nhật bao quanh từng ký tự tìm thấy trn ảnh roi
                     cv2.rectangle(roi, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
                     imgROI = thre_mor[y:y + h, x:x + w]  # cắt kí tự ra khỏi hình
 
                     imgROIResized = cv2.resize(imgROI,
-                                               (RESIZED_IMAGE_WIDTH, RESIZED_IMAGE_HEIGHT))  # resize lại hình ảnh
+                                               (RESIZED_IMAGE_WIDTH, RESIZED_IMAGE_HEIGHT))  # resize lại ký tự
                     npaROIResized = imgROIResized.reshape(
                         (1, RESIZED_IMAGE_WIDTH * RESIZED_IMAGE_HEIGHT))  # đưa hình ảnh về mảng 1 chiều
 
-                    # cHUYỂN ảnh thành ma trận có 1 hàng và số cột là tổng số điểm ảnh trong đó
+                    # Chuyển ảnh thành ma trận có 1 hàng và số cột là tổng số điểm ảnh trong đó
                     npaROIResized = np.float32(npaROIResized)  # chuyển mảng về dạng float
-                    _, npaResults, neigh_resp, dists = kNearest.findNearest(npaROIResized,k=3)  # call KNN function find_nearest; neigh_resp là hàng xóm
-                    strCurrentChar = str(chr(int(npaResults[0][0])))  # Lấy mã ASCII của kí tự đang xét
+                    _, npaResults, neigh_resp, dists = kNearest.findNearest(npaROIResized,k=3)  # call KNN function find_nearest; dự đoán các ký tự
+                    strCurrentChar = str(chr(int(npaResults[0][0])))  # Lấy mã ASCII của kí tự đang dự đoán
                     cv2.putText(roi, strCurrentChar, (x, y + 50), cv2.FONT_HERSHEY_DUPLEX, 2, (255, 255, 0), 3)
 
                     if (y < height / 3):  # Biển số 1 hay 2 hàng

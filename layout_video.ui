@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1538</width>
+    <width>1610</width>
     <height>859</height>
    </rect>
   </property>
@@ -93,7 +93,7 @@ color: rgb(255, 85, 0);</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>90</y>
+      <y>60</y>
       <width>1481</width>
       <height>741</height>
      </rect>
@@ -124,7 +124,7 @@ background-color: qlineargradient(spread:pad, x1:0.636826, y1:1, x2:0.627025, y2
       <enum>QFrame::Box</enum>
      </property>
      <property name="text">
-      <string>TextLabel</string>
+      <string/>
      </property>
     </widget>
     <widget class="QLabel" name="lbl_contour">
@@ -143,14 +143,14 @@ background-color: qlineargradient(spread:pad, x1:0.636826, y1:1, x2:0.627025, y2
       <enum>QFrame::Box</enum>
      </property>
      <property name="text">
-      <string>TextLabelllll</string>
+      <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="btn_chonVideo">
+    <widget class="QPushButton" name="btn_tieptuc">
      <property name="geometry">
       <rect>
        <x>1090</x>
-       <y>20</y>
+       <y>110</y>
        <width>171</width>
        <height>61</height>
       </rect>
@@ -163,14 +163,14 @@ background-color: qlineargradient(spread:pad, x1:0.636826, y1:1, x2:0.627025, y2
       </font>
      </property>
      <property name="text">
-      <string>Bắt Đầu</string>
+      <string>Tiếp tục</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="btn_nhandang">
+    <widget class="QPushButton" name="btn_dung">
      <property name="geometry">
       <rect>
-       <x>1300</x>
-       <y>20</y>
+       <x>1310</x>
+       <y>110</y>
        <width>171</width>
        <height>61</height>
       </rect>
@@ -189,8 +189,8 @@ background-color: qlineargradient(spread:pad, x1:0.636826, y1:1, x2:0.627025, y2
     <widget class="QLabel" name="label_4">
      <property name="geometry">
       <rect>
-       <x>1080</x>
-       <y>160</y>
+       <x>1090</x>
+       <y>240</y>
        <width>121</width>
        <height>51</height>
       </rect>
@@ -218,9 +218,9 @@ background-color: qlineargradient(spread:pad, x1:0.636826, y1:1, x2:0.627025, y2
     <widget class="QLineEdit" name="let_bienso">
      <property name="geometry">
       <rect>
-       <x>1220</x>
-       <y>140</y>
-       <width>261</width>
+       <x>1240</x>
+       <y>220</y>
+       <width>241</width>
        <height>91</height>
       </rect>
      </property>
@@ -286,8 +286,8 @@ background-color: qlineargradient(spread:pad, x1:0.636826, y1:1, x2:0.627025, y2
     <widget class="QLabel" name="label_9">
      <property name="geometry">
       <rect>
-       <x>1080</x>
-       <y>300</y>
+       <x>1090</x>
+       <y>340</y>
        <width>121</width>
        <height>51</height>
       </rect>
@@ -478,9 +478,9 @@ background-color: qlineargradient(spread:pad, x1:0.636826, y1:1, x2:0.627025, y2
     <widget class="QLineEdit" name="let_tinh">
      <property name="geometry">
       <rect>
-       <x>1220</x>
-       <y>290</y>
-       <width>261</width>
+       <x>1240</x>
+       <y>330</y>
+       <width>241</width>
        <height>71</height>
       </rect>
      </property>
@@ -499,6 +499,23 @@ background-color: qlineargradient(spread:pad, x1:0.636826, y1:1, x2:0.627025, y2
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_ChonVideo">
+     <property name="geometry">
+      <rect>
+       <x>1200</x>
+       <y>10</y>
+       <width>171</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-weight: bold;
+font-size: 18px</string>
+     </property>
+     <property name="text">
+      <string>Chọn Video</string>
      </property>
     </widget>
    </widget>
