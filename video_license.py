@@ -9,6 +9,7 @@ from PyQt5.QtCore import QThread, pyqtSignal, Qt
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 import Preprocess
+import DBConnection
 import math
 import layout_video
 
@@ -58,12 +59,12 @@ class MainWindow(QtWidgets.QFrame, layout_video.Ui_Frame):
     def stop_capture_video(self):
         self.thread[1].stop()
 
-    def showtime(self):
-        while True:
-            QApplication.processEvents()
-            dt = datetime.datetime.now()
-            self.let_ngay.setText('%s-%s-%s' % (dt.day, dt.month, dt.year))
-            self.let_gio.setText('%s:%s:%s' % (dt.hour, dt.minute, dt.second))
+    # def showtime(self):
+    #     while True:
+    #         QApplication.processEvents()
+    #         dt = datetime.datetime.now()
+    #         self.let_ngay.setText('%s-%s-%s' % (dt.day, dt.month, dt.year))
+    #         self.let_gio.setText('%s:%s:%s' % (dt.hour, dt.minute, dt.second))
     def select_video(self):
         self.cap_path = QFileDialog.getOpenFileName(filter="(*.*)")[0]
         global cap
@@ -86,10 +87,21 @@ class MainWindow(QtWidgets.QFrame, layout_video.Ui_Frame):
         self.lbl_contour.setPixmap(contour_img)
 
     def info(self, text):
-        # in4 = self.let_bienso.text()
-        in5 = int(text[0:2])
-        self.let_ten.setText('Phạm Tuấn Dũng')
-        self.let_lop.setText('KTPM03-K15')
+        in4 = self.let_bienso.text()
+        query = 'select *from datn.people where PersonLisense="' + in4 + '"'
+        person = DBConnection.queryDB(query)
+        print(person)
+        in5 = int(in4[0:2])
+        if person!=[]:
+            self.let_ten.setText(person[0][1])
+            self.let_cccd.setText(person[0][5])
+            self.let_adr.setText(person[0][3])
+            self.let_score.setText(str(person[0][4]))
+        else:
+            self.let_ten.setText('Không có dữ liệu')
+            self.let_cccd.setText('Không có dữ liệu')
+            self.let_adr.setText('Không có dữ liệu')
+            self.let_score.setText('Không có dữ liệu')
         lang = {
             11: 'Cao Bằng', 12: 'Lạng Sơn', 14: 'Quảng Ninh', 15: 'Hải Phòng', 17: 'Thái Bình', 18: 'Nam Định',
             19: 'Phú Thọ', 20: 'Thái Nguyên', 21: 'Yên Bái', 22: 'Tuyên Quang', 23: 'Hà Giang', 24: 'Lao Cai',
@@ -282,7 +294,7 @@ if __name__ == '__main__':
     app = QtWidgets.QApplication([])
     widget = MainWindow()
     widget.show()
-    widget.showtime()
+    # widget.showtime()
     try:
         sys.exit(app.exec_())
     except (SystemError, SystemExit):

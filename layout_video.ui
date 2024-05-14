@@ -118,13 +118,15 @@ background-color: qlineargradient(spread:pad, x1:0.636826, y1:1, x2:0.627025, y2
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);</string>
+      <string notr="true">background-color: rgb(255, 255, 255);
+font-size:16px
+</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::Box</enum>
      </property>
      <property name="text">
-      <string/>
+      <string>Nơi hiển thị Video</string>
      </property>
     </widget>
     <widget class="QLabel" name="lbl_contour">
@@ -137,13 +139,15 @@ background-color: qlineargradient(spread:pad, x1:0.636826, y1:1, x2:0.627025, y2
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);</string>
+      <string notr="true">background-color: rgb(255, 255, 255);
+font-size:16px
+</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::Box</enum>
      </property>
      <property name="text">
-      <string/>
+      <string>Nơi hiển thị Coutour</string>
      </property>
     </widget>
     <widget class="QPushButton" name="btn_tieptuc">
@@ -226,16 +230,18 @@ background-color: qlineargradient(spread:pad, x1:0.636826, y1:1, x2:0.627025, y2
      </property>
      <property name="font">
       <font>
-       <pointsize>24</pointsize>
+       <pointsize>-1</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);</string>
+      <string notr="true">background-color: rgb(255, 255, 255);
+font-size:16px
+</string>
      </property>
      <property name="text">
-      <string/>
+      <string>Hiển thị biển số</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -252,11 +258,15 @@ background-color: qlineargradient(spread:pad, x1:0.636826, y1:1, x2:0.627025, y2
      </property>
      <property name="font">
       <font>
-       <pointsize>14</pointsize>
+       <pointsize>-1</pointsize>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);</string>
+      <string notr="true">background-color: rgb(255, 255, 255);
+font-size:16px</string>
+     </property>
+     <property name="text">
+      <string>Hiển thị số CCCD</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -273,11 +283,15 @@ background-color: qlineargradient(spread:pad, x1:0.636826, y1:1, x2:0.627025, y2
      </property>
      <property name="font">
       <font>
-       <pointsize>14</pointsize>
+       <pointsize>-1</pointsize>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);</string>
+      <string notr="true">background-color: rgb(255, 255, 255);
+font-size:16px</string>
+     </property>
+     <property name="text">
+      <string>Hiển thị địa chỉ chủ xe</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -306,7 +320,7 @@ background-color: qlineargradient(spread:pad, x1:0.636826, y1:1, x2:0.627025, y2
       <enum>QFrame::NoFrame</enum>
      </property>
      <property name="text">
-      <string>Tỉnh</string>
+      <string>Biển tỉnh</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -335,7 +349,7 @@ background-color: qlineargradient(spread:pad, x1:0.636826, y1:1, x2:0.627025, y2
       <enum>QFrame::NoFrame</enum>
      </property>
      <property name="text">
-      <string>Họ &amp; Tên</string>
+      <string>Tên</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -364,7 +378,7 @@ background-color: qlineargradient(spread:pad, x1:0.636826, y1:1, x2:0.627025, y2
       <enum>QFrame::NoFrame</enum>
      </property>
      <property name="text">
-      <string>Ngày</string>
+      <string>CCCD</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -393,7 +407,7 @@ background-color: qlineargradient(spread:pad, x1:0.636826, y1:1, x2:0.627025, y2
       <enum>QFrame::NoFrame</enum>
      </property>
      <property name="text">
-      <string>Giờ</string>
+      <string>Địa chỉ</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -422,7 +436,7 @@ background-color: qlineargradient(spread:pad, x1:0.636826, y1:1, x2:0.627025, y2
       <enum>QFrame::NoFrame</enum>
      </property>
      <property name="text">
-      <string>Lớp</string>
+      <string>Điểm</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -439,11 +453,15 @@ background-color: qlineargradient(spread:pad, x1:0.636826, y1:1, x2:0.627025, y2
      </property>
      <property name="font">
       <font>
-       <pointsize>14</pointsize>
+       <pointsize>-1</pointsize>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);</string>
+      <string notr="true">background-color: rgb(255, 255, 255);
+font-size:16px</string>
+     </property>
+     <property name="text">
+      <string>Hiển thị điểm</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -460,16 +478,17 @@ background-color: qlineargradient(spread:pad, x1:0.636826, y1:1, x2:0.627025, y2
      </property>
      <property name="font">
       <font>
-       <pointsize>14</pointsize>
+       <pointsize>-1</pointsize>
        <weight>50</weight>
        <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);</string>
+      <string notr="true">background-color: rgb(255, 255, 255);
+font-size:16px</string>
      </property>
      <property name="text">
-      <string/>
+      <string>Hiển thị tên chủ xe</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -486,16 +505,17 @@ background-color: qlineargradient(spread:pad, x1:0.636826, y1:1, x2:0.627025, y2
      </property>
      <property name="font">
       <font>
-       <pointsize>18</pointsize>
+       <pointsize>-1</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);</string>
+      <string notr="true">background-color: rgb(255, 255, 255);
+font-size:16px</string>
      </property>
      <property name="text">
-      <string/>
+      <string>Hiển thị tên tỉnh của biển</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>

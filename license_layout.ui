@@ -96,27 +96,6 @@
         <string>Nhận Dạng</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="btn_info">
-       <property name="geometry">
-        <rect>
-         <x>880</x>
-         <y>370</y>
-         <width>121</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Tahoma</family>
-         <pointsize>11</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Thông Tin</string>
-       </property>
-      </widget>
       <widget class="QPushButton" name="btn_chonanh">
        <property name="geometry">
         <rect>
@@ -154,13 +133,14 @@
         <enum>Qt::NoFocus</enum>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
+        <string notr="true">background-color: rgb(255, 255, 255);
+font-size:16px</string>
        </property>
        <property name="frameShape">
         <enum>QFrame::Box</enum>
        </property>
        <property name="text">
-        <string>result</string>
+        <string>Nơi hiển thị ảnh phóng to</string>
        </property>
       </widget>
       <widget class="QLabel" name="original_img">
@@ -173,20 +153,21 @@
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
+        <string notr="true">background-color: rgb(255, 255, 255);
+font-size:16px</string>
        </property>
        <property name="frameShape">
         <enum>QFrame::Box</enum>
        </property>
        <property name="text">
-        <string>anh goc</string>
+        <string>Nơi hiển thị ảnh đã chọn</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="let_bienso">
        <property name="geometry">
         <rect>
-         <x>880</x>
-         <y>450</y>
+         <x>890</x>
+         <y>380</y>
          <width>211</width>
          <height>71</height>
         </rect>
@@ -194,7 +175,7 @@
        <property name="font">
         <font>
          <family>Tahoma</family>
-         <pointsize>22</pointsize>
+         <pointsize>-1</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -203,10 +184,11 @@
         <enum>Qt::StrongFocus</enum>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
+        <string notr="true">background-color: rgb(255, 255, 255);
+font-size:16px</string>
        </property>
        <property name="text">
-        <string/>
+        <string>Hiển thị biển số</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -215,8 +197,8 @@
       <widget class="QLineEdit" name="let_tinh">
        <property name="geometry">
         <rect>
-         <x>880</x>
-         <y>550</y>
+         <x>890</x>
+         <y>470</y>
          <width>211</width>
          <height>41</height>
         </rect>
@@ -224,26 +206,27 @@
        <property name="font">
         <font>
          <family>Tahoma</family>
-         <pointsize>14</pointsize>
+         <pointsize>-1</pointsize>
          <weight>50</weight>
          <bold>false</bold>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
+        <string notr="true">background-color: rgb(255, 255, 255);
+font-size:16px</string>
        </property>
        <property name="text">
-        <string/>
+        <string>Hiển thị tên tỉnh của biển</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLineEdit" name="let_gio">
+      <widget class="QLineEdit" name="let_adr">
        <property name="geometry">
         <rect>
-         <x>880</x>
-         <y>720</y>
+         <x>890</x>
+         <y>660</y>
          <width>211</width>
          <height>41</height>
         </rect>
@@ -251,13 +234,17 @@
        <property name="font">
         <font>
          <family>Tahoma</family>
-         <pointsize>14</pointsize>
+         <pointsize>-1</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
+        <string notr="true">background-color: rgb(255, 255, 255);
+font-size:16px</string>
+       </property>
+       <property name="text">
+        <string>Hiển thị địa chỉ</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -267,7 +254,7 @@
        <property name="geometry">
         <rect>
          <x>790</x>
-         <y>470</y>
+         <y>400</y>
          <width>81</width>
          <height>31</height>
         </rect>
@@ -284,14 +271,14 @@
         <string notr="true">background-color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
-        <string>Biển Số: </string>
+        <string> Biển Số</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_3">
        <property name="geometry">
         <rect>
          <x>790</x>
-         <y>550</y>
+         <y>470</y>
          <width>81</width>
          <height>41</height>
         </rect>
@@ -308,14 +295,14 @@
         <string notr="true">background-color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
-        <string>Tỉnh</string>
+        <string> Biển Tỉnh</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_4">
        <property name="geometry">
         <rect>
          <x>790</x>
-         <y>610</y>
+         <y>530</y>
          <width>81</width>
          <height>41</height>
         </rect>
@@ -332,14 +319,14 @@
         <string notr="true">background-color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
-        <string>Tên</string>
+        <string> Tên</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="let_ngay">
        <property name="geometry">
         <rect>
-         <x>880</x>
-         <y>670</y>
+         <x>890</x>
+         <y>600</y>
          <width>211</width>
          <height>41</height>
         </rect>
@@ -347,7 +334,35 @@
        <property name="font">
         <font>
          <family>Tahoma</family>
-         <pointsize>14</pointsize>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);
+font-size:16px</string>
+       </property>
+       <property name="text">
+        <string>Hiển thị CCCD</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_8">
+       <property name="geometry">
+        <rect>
+         <x>790</x>
+         <y>660</y>
+         <width>81</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Tahoma</family>
+         <pointsize>10</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -355,11 +370,63 @@
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 255, 255);</string>
        </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
+       <property name="text">
+        <string>Địa chỉ</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_8">
+      <widget class="QLabel" name="label_9">
+       <property name="geometry">
+        <rect>
+         <x>790</x>
+         <y>600</y>
+         <width>81</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Tahoma</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>CCCD</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="let_ten">
+       <property name="geometry">
+        <rect>
+         <x>890</x>
+         <y>530</y>
+         <width>211</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Tahoma</family>
+         <pointsize>-1</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);
+font-size:16px</string>
+       </property>
+       <property name="text">
+        <string>Hiển thị tên chủ xe</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_10">
        <property name="geometry">
         <rect>
          <x>790</x>
@@ -380,38 +447,14 @@
         <string notr="true">background-color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
-        <string>Giờ</string>
+        <string>Điểm</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_9">
+      <widget class="QLineEdit" name="let_score">
        <property name="geometry">
         <rect>
-         <x>790</x>
-         <y>670</y>
-         <width>81</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Tahoma</family>
-         <pointsize>10</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
-       </property>
-       <property name="text">
-        <string>Ngày</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="let_ten">
-       <property name="geometry">
-        <rect>
-         <x>880</x>
-         <y>610</y>
+         <x>890</x>
+         <y>720</y>
          <width>211</width>
          <height>41</height>
         </rect>
@@ -419,19 +462,20 @@
        <property name="font">
         <font>
          <family>Tahoma</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
+        <string notr="true">background-color: rgb(255, 255, 255);
+font-size:16px</string>
        </property>
        <property name="text">
-        <string/>
+        <string>Hiển thị điểm</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </widget>

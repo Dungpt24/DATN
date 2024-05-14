@@ -11,6 +11,7 @@ import layout_image
 import cv2
 import numpy as np
 import Preprocess
+import DBConnection
 import math
 
 img_path = None
@@ -43,16 +44,15 @@ class MainWindow(QtWidgets.QFrame, layout_image.Ui_Frame):
         self.btn_chonanh.clicked.connect(self.loadImage)
 
         self.btn_nhandang.clicked.connect(self.imgae_license)
-        self.btn_info.clicked.connect(self.info)
 
-    def showtime(self):
-        while True:
-            QApplication.processEvents()
-            dt = datetime.datetime.now()
-            self.let_ngay.setText('%s-%s-%s' % (dt.day, dt.month, dt.year))
-            self.let_gio.setText('%s:%s:%s' % (dt.hour, dt.minute, dt.second))
+    # def showtime(self):
+    #     while True:
+    #         QApplication.processEvents()
+    #         dt = datetime.datetime.now()
+    #         self.let_ngay.setText('%s-%s-%s' % (dt.day, dt.month, dt.year))
+    #         self.let_gio.setText('%s:%s:%s' % (dt.hour, dt.minute, dt.second))
     def loadImage(self):
-        self.img_path = QFileDialog.getOpenFileName(filter="Image (*.jp*)")[0]
+        self.img_path = QFileDialog.getOpenFileName(filter="Image (*.*)")[0]
         if self.img_path!="":
             self.previosfilename = self.img_path
             self.Ivehicle = cv2.imread(self.img_path)
@@ -204,6 +204,8 @@ class MainWindow(QtWidgets.QFrame, layout_image.Ui_Frame):
                 # roi = cv2.resize(roi, None, fx=0.75, fy=0.75)
 
                 self.let_bienso.setText(first_line + second_line)
+                fulllisense=first_line + second_line
+                self.info(fulllisense)
                 # cv2.imshow(str(n), cv2.cvtColor(roi, cv2.COLOR_BGR2RGB))
 
                 # viết biển số lên anh -> in ra lbl_result
@@ -218,8 +220,20 @@ class MainWindow(QtWidgets.QFrame, layout_image.Ui_Frame):
                 break
     def info(self, text):
         in4 = self.let_bienso.text()
+        query='select *from datn.people where PersonLisense="'+in4+'"'
+        person=DBConnection.queryDB(query)
+        print(person)
         in5 = int(in4[0:2])
-        self.let_ten.setText('Phạm Tuấn Dũng')
+        if person != []:
+            self.let_ten.setText(person[0][1])
+            self.let_cccd.setText(person[0][5])
+            self.let_adr.setText(person[0][2])
+            self.let_score.setText(str(person[0][4]))
+        else:
+            self.let_ten.setText('Không có dữ liệu')
+            self.let_cccd.setText('Không có dữ liệu')
+            self.let_adr.setText('Không có dữ liệu')
+            self.let_score.setText('Không có dữ liệu')
         lang = {
             11: 'Cao Bằng', 12: 'Lạng Sơn', 14: 'Quảng Ninh', 15: 'Hải Phòng', 17: 'Thái Bình', 18: 'Nam Định',
             19: 'Phú Thọ', 20: 'Thái Nguyên', 21: 'Yên Bái', 22: 'Tuyên Quang', 23: 'Hà Giang', 24: 'Lao Cai',
@@ -247,7 +261,7 @@ if __name__ == '__main__':
     app = QtWidgets.QApplication([])
     widget = MainWindow()
     widget.show()
-    widget.showtime()
+    # widget.showtime()
     try:
         sys.exit(app.exec_())
     except (SystemError, SystemExit):
