@@ -66,7 +66,7 @@ class MainWindow(QtWidgets.QFrame, layout_video.Ui_Frame):
     #         self.let_ngay.setText('%s-%s-%s' % (dt.day, dt.month, dt.year))
     #         self.let_gio.setText('%s:%s:%s' % (dt.hour, dt.minute, dt.second))
     def select_video(self):
-        self.cap_path = QFileDialog.getOpenFileName(filter="(*.*)")[0]
+        self.cap_path = QFileDialog.getOpenFileName(filter="(*.MOV)")[0]
         global cap
         cap = cv2.VideoCapture(self.cap_path)
 

@@ -215,7 +215,7 @@ class Ui_Frame(object):
 
     def retranslateUi(self, Frame):
         _translate = QtCore.QCoreApplication.translate
-        Frame.setWindowTitle(_translate("Frame", "Frame"))
+        Frame.setWindowTitle(_translate("Frame", "Nhận Dạng Biển Số Xe"))
         self.label.setText(_translate("Frame", "Nhận Dạng Biển Số Xe"))
         self.btn_nhandang.setText(_translate("Frame", "Nhận Dạng"))
         self.btn_chonanh.setText(_translate("Frame", "Chọn ảnh"))
