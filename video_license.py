@@ -88,7 +88,7 @@ class MainWindow(QtWidgets.QFrame, layout_video.Ui_Frame):
 
     def info(self, text):
         in4 = self.let_bienso.text()
-        query = 'select *from datn.people where PersonLisense="' + in4 + '"'
+        query = 'select *from datn.people where PersonLicense="' + in4 + '"'
         person = DBConnection.queryDB(query)
         print(person)
         in5 = int(in4[0:2])
@@ -96,12 +96,12 @@ class MainWindow(QtWidgets.QFrame, layout_video.Ui_Frame):
             self.let_ten.setText(person[0][1])
             self.let_cccd.setText(person[0][5])
             self.let_adr.setText(person[0][3])
-            self.let_score.setText(str(person[0][4]))
+            self.let_phonenumber.setText(person[0][4])
         else:
             self.let_ten.setText('Không có dữ liệu')
             self.let_cccd.setText('Không có dữ liệu')
             self.let_adr.setText('Không có dữ liệu')
-            self.let_score.setText('Không có dữ liệu')
+            self.let_phonenumber.setText('Không có dữ liệu')
         lang = {
             11: 'Cao Bằng', 12: 'Lạng Sơn', 14: 'Quảng Ninh', 15: 'Hải Phòng', 17: 'Thái Bình', 18: 'Nam Định',
             19: 'Phú Thọ', 20: 'Thái Nguyên', 21: 'Yên Bái', 22: 'Tuyên Quang', 23: 'Hà Giang', 24: 'Lao Cai',

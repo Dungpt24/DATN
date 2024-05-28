@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1117</width>
+    <width>1130</width>
     <height>863</height>
    </rect>
   </property>
@@ -55,7 +55,7 @@
        <rect>
         <x>0</x>
         <y>60</y>
-        <width>1101</width>
+        <width>1111</width>
         <height>781</height>
        </rect>
       </property>
@@ -447,7 +447,7 @@ font-size:16px</string>
         <string notr="true">background-color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
-        <string>Điểm</string>
+        <string>SĐT</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="let_score">
@@ -472,7 +472,7 @@ font-size:16px</string>
 font-size:16px</string>
        </property>
        <property name="text">
-        <string>Hiển thị điểm</string>
+        <string>Hiển thị số điện thoại</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>

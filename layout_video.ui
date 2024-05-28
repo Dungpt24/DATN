@@ -436,7 +436,7 @@ font-size:16px</string>
       <enum>QFrame::NoFrame</enum>
      </property>
      <property name="text">
-      <string>Điểm</string>
+      <string>SĐT</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -461,7 +461,7 @@ font-size:16px</string>
 font-size:16px</string>
      </property>
      <property name="text">
-      <string>Hiển thị điểm</string>
+      <string>Hiển thị số điện thoại</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
